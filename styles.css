@@ -186,7 +186,7 @@ h2 {
     margin: 10px 0 16px
 }
 
-/* Portfolio rows (match user's structure: media + info) */
+/* Portfolio rows */
 .projects-list {
     display: flex;
     flex-direction: column;
@@ -194,16 +194,19 @@ h2 {
 }
 
 .project {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 18px;
-    align-items: center;
-    background: var(--panel);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 16px;
-    padding: 16px
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    max-width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid orange;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
 }
-
+    .project.even {
+        flex-direction: row-reverse;
+    }
     .project .video-container {
         position: relative;
         border-radius: 12px;
