@@ -1,0 +1,41 @@
+[
+  {
+    "title": "Juego WebGL educativo",
+    "subtitle": "Quiz multijugador para aprender fiscalidad",
+    "year": 2025,
+    "tags": [
+      "WebGL",
+      "Unity",
+      "Educación"
+    ],
+    "thumb": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=80&auto=format&fit=crop",
+    "url": "#",
+    "featured": true,
+    "video": "assets/sample.mp4",
+    "poster": "assets/samplePoster.jpg"
+  },
+  {
+    "title": "Showroom 3D interactivo",
+    "subtitle": "Experiencia de producto con animación",
+    "year": 2024,
+    "tags": [
+      "3D",
+      "Interactividad"
+    ],
+    "thumb": "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=1200&q=80&auto=format&fit=crop",
+    "url": "#",
+    "featured": true
+  },
+  {
+    "title": "Plataforma de digitalización",
+    "subtitle": "Herramientas internas con AWS",
+    "year": 2023,
+    "tags": [
+      "AWS",
+      "Web"
+    ],
+    "thumb": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80&auto=format&fit=crop",
+    "url": "#",
+    "featured": false
+  }
+]

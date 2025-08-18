@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "portfolio": "Portafolio",
+    "about": "Sobre nosotros",
+    "contact": "Contacto"
+  },
+  "home": {
+    "hook": "Forjamos experiencias digitales que hacen crecer tu marca.",
+    "subhook": "Productos a medida, videojuegos y 3D para empresas que quieren destacar.",
+    "cta": "Pide presupuesto"
+  },
+  "services": {
+    "title": "Servicios",
+    "filter": "Filtrar por categoría",
+    "all": "Todas"
+  },
+  "portfolio": {
+    "title": "Portafolio",
+    "lead": "Selección de proyectos destacados."
+  },
+  "about": {
+    "title": "Sobre nosotros",
+    "text": "Moonforge une programación y arte 2D/3D para crear soluciones robustas y bonitas."
+  },
+  "contact": {
+    "title": "Contacto",
+    "name": "Nombre",
+    "email": "Email",
+    "msg": "Mensaje",
+    "send": "Enviar"
+  }
+}

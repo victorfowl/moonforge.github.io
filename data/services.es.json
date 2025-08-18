@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Diseño y desarrollo web",
+    "description": "Sitios a medida, rápidos y accesibles.",
+    "category": "Web"
+  },
+  {
+    "title": "Videojuegos y gamificación",
+    "description": "Prototipos, demos y productos completos (Unity/Unreal/WebGL).",
+    "category": "Videojuegos"
+  },
+  {
+    "title": "Arte 3D y motion",
+    "description": "Modelado, texturizado y renders para marketing.",
+    "category": "Arte 3D"
+  },
+  {
+    "title": "Integraciones AWS y automatización",
+    "description": "Pipelines, almacenamiento y herramientas internas.",
+    "category": "Digitalización"
+  }
+]
