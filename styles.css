@@ -198,7 +198,7 @@ h2 {
     align-items: flex-start;
     justify-content: space-between;
     max-width: 100%;
-    margin: 20px auto;
+    margin: 20px;
     padding: 20px;
     border: 2px solid orange;
     background-color: rgba(0, 0, 0, 0.4);
