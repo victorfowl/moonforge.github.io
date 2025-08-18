@@ -204,9 +204,30 @@ h2 {
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 8px;
 }
-    .project.even {
-        flex-direction: row-reverse;
+
+/* Alternar pares/impares automáticamente */
+.projects-list .project {
+    display: flex;
+    gap: 18px; /* separación entre media y texto */
+}
+
+    .projects-list .project:nth-child(even) {
+        flex-direction: row-reverse; /* pares invertidos */
     }
+
+/* Que ambos columnas repartan espacio */
+.project > .video-container,
+.project > .project-info {
+    flex: 1 1 0;
+}
+
+/* Móvil: siempre en columna (imagen arriba, texto abajo) */
+@media (max-width: 900px) {
+    .projects-list .project,
+    .projects-list .project:nth-child(even) {
+        flex-direction: column;
+    }
+}
     .project .video-container {
         position: relative;
         border-radius: 12px;
