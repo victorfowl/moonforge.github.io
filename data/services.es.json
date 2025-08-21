@@ -1,22 +1,32 @@
 [
   {
+    "id": "9f27b60ae80c48fca7c1dc56d8c20901",
     "title": "Diseño y desarrollo web",
     "description": "Sitios a medida, rápidos y accesibles.",
     "category": "Web"
   },
   {
+    "id": "ba9a72e484e14871a9d16115759aaa90",
     "title": "Videojuegos y gamificación",
     "description": "Prototipos, demos y productos completos (Unity/Unreal/WebGL).",
     "category": "Videojuegos"
   },
   {
+    "id": "648c27077960464caf8107c82cd21094",
     "title": "Arte 3D y motion",
     "description": "Modelado, texturizado y renders para marketing.",
     "category": "Arte 3D"
   },
   {
+    "id": "6875aaf04372448082617923620528c3",
     "title": "Integraciones AWS y automatización",
     "description": "Pipelines, almacenamiento y herramientas internas.",
+    "category": "Digitalización"
+  },
+  {
+    "id": "b3c83eb5ef244666a497049c298fba7d",
+    "title": "Integración IA",
+    "description": "Integración de IA en tu app o negocio.",
     "category": "Digitalización"
   }
 ]
