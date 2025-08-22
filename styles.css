@@ -284,3 +284,8 @@ h2 {
         gap: 12px
     }
 }
+
+
+.is-hidden {
+    display: none !important;
+}

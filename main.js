@@ -1,13 +1,115 @@
-const $ = (s, c = document) => c.querySelector(s); const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
-const dicts = { es: 'data/i18n.es.json', ca: 'data/i18n.ca.json', en: 'data/i18n.en.json' };
-const servicesData = { es: 'data/services.es.json', ca: 'data/services.ca.json', en: 'data/services.en.json' };
-const portfolioData = { es: 'data/projects.es.json', ca: 'data/projects.ca.json', en: 'data/projects.en.json' };
+// ---------- Utilidades ----------
+const $ = (s, c = document) => c.querySelector(s);
+const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+
+// Rutas de i18n y datos
+const dicts = {
+    es: 'data/i18n.es.json',
+    ca: 'data/i18n.ca.json',
+    en: 'data/i18n.en.json'
+};
+const servicesData = {
+    es: 'data/services.es.json',
+    ca: 'data/services.ca.json',
+    en: 'data/services.en.json'
+};
+const portfolioData = {
+    es: 'data/projects.es.json',
+    ca: 'data/projects.ca.json',
+    en: 'data/projects.en.json'
+};
+
+// Idioma guardado
 let LANG = localStorage.getItem('lang') || 'es';
-function setLang(l) { LANG = l; localStorage.setItem('lang', l); document.documentElement.lang = l }
-async function loadJSON(p) { const r = await fetch(p); if (!r.ok) throw new Error('Failed ' + p); return r.json() }
-function applyI18n(d) { $$('[data-i18n]').forEach(el => { const k = el.getAttribute('data-i18n'); const v = k.split('.').reduce((a, b) => a && a[b], d); if (typeof v === 'string') el.textContent = v; }); }
-function renderServices(items) { const g = $('#servicesGrid'); if (!g) return; g.innerHTML = ''; items.forEach(s => { const el = document.createElement('article'); el.className = 'card'; el.dataset.category = s.category; el.innerHTML = `<h3>${s.title}</h3><p>${s.description}</p>`; g.appendChild(el); }); }
-function initServiceFilter(items) { const sel = $('#serviceFilter'); if (!sel) return; const cats = [...new Set(items.map(i => i.category))].sort(); cats.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; sel.appendChild(o) }); sel.addEventListener('change', () => { $$('#servicesGrid .card').forEach(card => { card.style.display = (sel.value === 'all' || card.dataset.category === sel.value) ? '' : '' }) }); }
-function renderPortfolioList(items) { const list = $('#portfolioList'); if (!list) return; list.innerHTML = ''; items.filter(p => p.featured).sort((a, b) => (b.year || 0) - (a.year || 0)).forEach(p => { const row = document.createElement('div'); row.className = 'project'; const media = document.createElement('div'); media.className = 'video-container'; if (p.video) { media.innerHTML = `<video controls ${p.poster ? `poster="${p.poster}"` : ''}><source src="${p.video}" type="video/mp4">Your browser does not support HTML5 video.</video>`; } else { media.innerHTML = `<img class="thumb" src="${p.thumb || ''}" alt="${p.title}">`; } const info = document.createElement('div'); info.className = 'project-info'; info.innerHTML = `<h2>${p.title}</h2><p>${p.subtitle || ''}</p><div class="tags">${(p.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}</div>${p.url ? `<p><a class="more" href="${p.url}">Leer más</a></p>` : ''}`; row.appendChild(media); row.appendChild(info); list.appendChild(row); }); }
-async function hydrate() { const picker = $('#lang-select'); if (picker) { picker.value = LANG; picker.addEventListener('change', e => { setLang(e.target.value); hydrate(); }); } $('#year') && ($('#year').textContent = new Date().getFullYear()); const dict = await loadJSON(dicts[LANG]); applyI18n(dict); if ($('#servicesGrid')) { const items = await loadJSON(servicesData[LANG]); renderServices(items); initServiceFilter(items); } if ($('#portfolioList')) { const items = await loadJSON(portfolioData[LANG]); renderPortfolioList(items); } }
-document.addEventListener('DOMContentLoaded', hydrate);
+function setLang(lang) {
+    LANG = lang;
+    localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang;
+}
+
+// Fetch JSON con control de error
+async function loadJSON(path) {
+    const res = await fetch(path, { cache: 'no-store' });
+    if (!res.ok) throw new Error('Failed to load: ' + path);
+    return res.json();
+}
+
+// Aplica i18n a elementos con data-i18n="a.b.c"
+function applyI18n(dict) {
+    $$('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const val = key.split('.').reduce((a, k) => a && a[k], dict);
+        if (typeof val === 'string') el.textContent = val;
+    });
+}
+
+// ---------- Servicios (render + filtro robusto) ----------
+
+// Normaliza texto para comparar categorías con y sin acentos
+function normalizeCat(txt) {
+    return (txt || '')
+        .toString()
+        .trim()
+        .toLowerCase()
+        .normalize('NFD')                 // separa acentos
+        .replace(/\p{Diacritic}/gu, '')    // quita acentos
+        .replace(/\s+/g, ' ');             // colapsa espacios
+}
+
+function renderServices(items) {
+    const grid = $('#servicesGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    items.forEach(s => {
+        const el = document.createElement('article');
+        el.className = 'card service-card';
+        // Guardamos la categoría normalizada para el filtro
+        el.dataset.category = normalizeCat(s.category);
+        el.innerHTML = `
+      <h3>${s.title}</h3>
+      <p>${s.description}</p>
+      <p class="muted" style="margin-top:8px">${s.category || ''}</p>
+    `;
+        grid.appendChild(el);
+    });
+}
+
+function initServiceFilter(items) {
+    const select = $('#serviceFilter');
+    const grid = $('#servicesGrid');
+    if (!select || !grid) return;
+
+    // Reconstruye opciones (comenzando por "Todas")
+    select.innerHTML = '';
+    const optAll = document.createElement('option');
+    optAll.value = 'all';
+    // Etiqueta "Todas" desde i18n si está renderizada en la página
+    const allLabel = $('[data-i18n="services.all"]')?.textContent || 'Todas';
+    optAll.textContent = allLabel;
+    select.appendChild(optAll);
+
+    // Mapa de categorías: valor normalizado -> etiqueta original (evita duplicados)
+    const map = new Map();
+    items.forEach(i => {
+        const val = normalizeCat(i.category);
+        const label = (i.category || '').toString().trim();
+        if (val) map.set(val, label || val);
+    });
+
+    // Añade opciones ordenadas por etiqueta visible
+    [...map.entries()]
+        .sort((a, b) => a[1].localeCompare(b[1]))
+        .forEach(([val, label]) => {
+            const o = document.createElement('option');
+            o.value = val;
+            o.textContent = label;
+            select.appendChild(o);
+        });
+
+    // Función de filtrado
+    function applyFilter() {
+        const val = select.value;
+        $$('.service-card', grid).forEach(card => {
+            const match = (val === 'all') || (card.dataset.
+
