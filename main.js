@@ -111,5 +111,89 @@ function initServiceFilter(items) {
     function applyFilter() {
         const val = select.value;
         $$('.service-card', grid).forEach(card => {
-            const match = (val === 'all') || (card.dataset.
+            const match = (val === 'all') || (card.dataset.category === val);
+            card.classList.toggle('is-hidden', !match);
+        });
+    }
 
+    // Inicial y en cambios
+    select.onchange = applyFilter;
+    applyFilter();
+}
+
+// ---------- Portfolio (filas media + texto) ----------
+
+function renderPortfolioList(items) {
+    const list = $('#portfolioList');
+    if (!list) return;
+    list.innerHTML = '';
+
+    // featured primero, más recientes primero
+    items
+        .filter(p => p.featured)
+        .sort((a, b) => (b.year || 0) - (a.year || 0))
+        .forEach(p => {
+            const row = document.createElement('div');
+            row.className = 'project';
+
+            // Media (vídeo con póster, o imagen)
+            const media = document.createElement('div');
+            media.className = 'video-container';
+            if (p.video) {
+                media.innerHTML = `
+          <video controls ${p.poster ? `poster="${p.poster}"` : ''}>
+            <source src="${p.video}" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>`;
+            } else {
+                media.innerHTML = `<img class="thumb" src="${p.thumb || ''}" alt="${p.title}">`;
+            }
+
+            // Info
+            const info = document.createElement('div');
+            info.className = 'project-info';
+            info.innerHTML = `
+        <h2>${p.title}</h2>
+        <p class="muted">${p.subtitle || ''}</p>
+        <div class="tags">${(p.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        ${p.url ? `<p><a class="more" href="${p.url}">Leer más</a></p>` : ''}
+      `;
+
+            row.appendChild(media);
+            row.appendChild(info);
+            list.appendChild(row);
+        });
+}
+
+// ---------- Hydrate (i18n + páginas) ----------
+
+async function hydrate() {
+    // Idioma selector
+    const picker = $('#lang-select');
+    if (picker) {
+        picker.value = LANG;
+        picker.addEventListener('change', e => { setLang(e.target.value); hydrate(); });
+    }
+
+    // Año en footer
+    if ($('#year')) $('#year').textContent = new Date().getFullYear();
+
+    // i18n
+    const dict = await loadJSON(dicts[LANG]);
+    applyI18n(dict);
+
+    // Servicios
+    if ($('#servicesGrid')) {
+        const items = await loadJSON(servicesData[LANG]);
+        renderServices(items);
+        initServiceFilter(items);
+    }
+
+    // Portfolio
+    if ($('#portfolioList')) {
+        const items = await loadJSON(portfolioData[LANG]);
+        renderPortfolioList(items);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', hydrate);
