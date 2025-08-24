@@ -289,3 +289,37 @@ h2 {
 .is-hidden {
     display: none !important;
 }
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: #000;
+    margin: 18px 0;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform .4s ease;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    user-select: none;
+}
+
+.carousel-nav {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.carousel-btn {
+    padding: 6px 10px;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 10px;
+    background: rgba(255,255,255,.06);
+    cursor: pointer;
+}
