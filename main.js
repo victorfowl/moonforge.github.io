@@ -4,19 +4,19 @@ const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
 
 // Rutas de i18n y datos
 const dicts = {
-    es: 'data/i18n.es.json',
-    ca: 'data/i18n.ca.json',
-    en: 'data/i18n.en.json'
+    es: '/data/i18n.es.json',
+    ca: '/data/i18n.ca.json',
+    en: '/data/i18n.en.json'
 };
 const servicesData = {
-    es: 'data/services.es.json',
-    ca: 'data/services.ca.json',
-    en: 'data/services.en.json'
+    es: '/data/services.es.json',
+    ca: '/data/services.ca.json',
+    en: '/data/services.en.json'
 };
 const portfolioData = {
-    es: 'data/projects.es.json',
-    ca: 'data/projects.ca.json',
-    en: 'data/projects.en.json'
+    es: '/data/projects.es.json',
+    ca: '/data/projects.ca.json',
+    en: '/data/projects.en.json'
 };
 
 // Idioma guardado
