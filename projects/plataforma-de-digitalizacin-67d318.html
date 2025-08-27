@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Proyecto &ndash; Moonforge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/styles.css" rel="stylesheet">
+</head>
+<body>
+    <header class="topbar">
+        <div class="container nav-wrap">
+            <a href="/index.html" class="brand">Moonforge</a>
+            <nav class="nav">
+                <a href="/services.html">Servicios</a>
+                <a href="/portfolio.html">Portfolio</a>
+                <a href="/contact.html">Contacto</a>
+            </nav>
+            <div class="lang">
+                <select id="lang-select" aria-label="Idioma">
+                    <option value="es">ES</option>
+                    <option value="en">EN</option>
+                    <option value="ca">CA</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main class="container section">
+        <h1 id="projTitle"></h1>
+        <p id="projSubtitle" class="muted"></p>
+        <div id="carousel" class="carousel"></div>
+        <div id="projTags" class="tags"></div>
+        <p style="margin-top:18px"><a class="more" href="/portfolio.html">← Volver al portfolio</a></p>
+    </main>
+
+    <footer class="footer">
+        <div class="container">© <span id="year"></span> Moonforge</div>
+    </footer>
+
+    <script src="/main.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const slug = (new URLSearchParams(location.search)).get('slug')
+                    || location.pathname.split('/').pop().replace('.html', '');
+
+                if (document.getElementById('year')) {
+                    document.getElementById('year').textContent = new Date().getFullYear();
+                }
+
+                // i18n
+                const dict = await loadJSON(dicts[LANG]);
+                applyI18n(dict);
+
+                // Carga y busca el proyecto por slug
+                const items = await loadJSON(portfolioData[LANG]);
+                const p = items.find(x => x.slug === slug);
+                if (!p) {
+                    document.getElementById('projTitle').textContent = 'Proyecto no encontrado';
+                    const c = document.getElementById('carousel');
+                    if (c) c.innerHTML = '<div class="card" style="padding:16px">No se encontró el proyecto solicitado.</div>';
+                    return;
+                }
+
+                document.getElementById('projTitle').textContent = p.title;
+                document.getElementById('projSubtitle').textContent = p.subtitle || '';
+                document.getElementById('projTags').innerHTML = (p.tags || [])
+                    .map(t => `<span class="tag">${t}</span>`).join('');
+
+                // Carrusel (usa assetUrl internamente)
+                renderCarousel(document.getElementById('carousel'), p.media || [], p.thumb, p.video, p.poster);
+            } catch (e) {
+                console.error(e);
+                const c = document.getElementById('carousel');
+                if (c) c.innerHTML = '<div class="card" style="padding:16px">Se produjo un error cargando el proyecto.</div>';
+            }
+        });
+    </script>
+</body>
+</html>
