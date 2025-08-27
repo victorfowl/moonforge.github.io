@@ -14,7 +14,14 @@
     "video": "",
     "poster": "",
     "slug": "juego-webgl-educativo-d276f0",
-    "media": []
+    "media": [
+      {
+        "type": "image",
+        "src": "assets/uploads/2025/08/hiroyyofelicidades-47475506.jpg",
+        "poster": null,
+        "alt": null
+      }
+    ]
   },
   {
     "id": "b0f4c04710bc440b887dd35955966d9e",
