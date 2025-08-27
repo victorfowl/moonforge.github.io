@@ -1,60 +1,39 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<!doctype html><html><body><h1>Servicios</h1></body></html>
-=======
-=======
->>>>>>> parent of 55e0740 (Reset)
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
   <title>Servicios — Moonforge</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="assets/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/styles.css" rel="stylesheet">
 </head>
 <body>
-<header class="topbar">
-  <div class="container nav-wrap">
-    <a class="brand" href="index.html">
-      <img src="assets/logo.png" alt="Moonforge" class="logo" />
-      <span class="brand-text">Moonforge</span>
-    </a>
-    <nav class="nav">
-      <a href="index.html" data-i18n="nav.home">Inicio</a>
-      <a href="services.html" data-i18n="nav.services">Servicios</a>
-      <a href="portfolio.html" data-i18n="nav.portfolio">Portafolio</a>
-      <a href="about.html" data-i18n="nav.about">Sobre nosotros</a>
-      <a href="contact.html" data-i18n="nav.contact">Contacto</a>
-    </nav>
-    <div class="lang">
-      <label for="lang-select" class="sr-only">Idioma</label>
-      <select id="lang-select" aria-label="Idioma">
-        <option value="es">ES</option>
-        <option value="ca">CAT</option>
-        <option value="en">EN</option>
-      </select>
+  <header class="topbar">
+    <div class="container nav-wrap">
+      <a href="/index.html" class="brand">Moonforge</a>
+      <nav class="nav">
+        <span class="nav-item has-mega">
+          <a href="/services.html" class="active">Servicios</a>
+          <div id="mega-services" class="mega"><div class="mega-grid"></div></div>
+        </span>
+        <a href="/portfolio.html">Portfolio</a>
+        <a href="/index.html#about">Sobre nosotros</a>
+        <a href="/contact.html">Contacto</a>
+      </nav>
+      <div class="lang"><select id="lang-select"><option value="es">ES</option><option value="en">EN</option><option value="ca">CA</option></select></div>
     </div>
-  </div>
-</header>
-<main>
+  </header>
 
-<section class="container section">
-  <h1 data-i18n="services.title">Servicios</h1>
-  <div class="toolbar">
-    <label for="serviceFilter" data-i18n="services.filter">Filtrar por categoría</label>
-    <select id="serviceFilter">
-      <option value="all" data-i18n="services.all">Todas</option>
-    </select>
-  </div>
-  <div id="servicesGrid" class="grid"></div>
-</section>
+  <main class="container section">
+    <h1>Servicios</h1>
+    <p class="muted">Filtra por categoría para encontrar lo que necesitas.</p>
+    <div class="toolbar">
+      <label for="serviceFilter" class="sr-only">Filtrar categoría</label>
+      <select id="serviceFilter"><option value="all">Todas</option></select>
+    </div>
+    <div id="servicesGrid" class="grid"></div>
+  </main>
 
-</main>
-<footer class="footer">
-  <div class="container">© <span id="year"></span> Moonforge</div>
-</footer>
-<script src="main.js"></script>
+  <footer class="footer"><div class="container">© <span id="year"></span> Moonforge</div></footer>
+  <script src="/main.js" defer></script>
 </body>
 </html>
->>>>>>> parent of 55e0740 (Reset)

@@ -1,0 +1,1 @@
+Coloca tu fondo del hero en /assets/hero-space.jpg y los logos en /assets/brands/.

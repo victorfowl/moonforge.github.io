@@ -1,64 +1,96 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<!doctype html><html><head><link rel='stylesheet' href='styles.css'></head><body><h1>Moonforge Home</h1></body></html>
-=======
-=======
->>>>>>> parent of 55e0740 (Reset)
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Inicio — Moonforge</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="assets/logo.png" />
+  <meta charset="utf-8">
+  <title>Moonforge — Producción Creativa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/styles.css" rel="stylesheet">
 </head>
 <body>
-<header class="topbar">
-  <div class="container nav-wrap">
-    <a class="brand" href="index.html">
-      <img src="assets/logo.png" alt="Moonforge" class="logo" />
-      <span class="brand-text">Moonforge</span>
-    </a>
-    <nav class="nav">
-      <a href="index.html" data-i18n="nav.home">Inicio</a>
-      <a href="services.html" data-i18n="nav.services">Servicios</a>
-      <a href="portfolio.html" data-i18n="nav.portfolio">Portafolio</a>
-      <a href="about.html" data-i18n="nav.about">Sobre nosotros</a>
-      <a href="contact.html" data-i18n="nav.contact">Contacto</a>
-    </nav>
-    <div class="lang">
-      <label for="lang-select" class="sr-only">Idioma</label>
-      <select id="lang-select" aria-label="Idioma">
-        <option value="es">ES</option>
-        <option value="ca">CAT</option>
-        <option value="en">EN</option>
-      </select>
+  <header class="topbar">
+    <div class="container nav-wrap">
+      <a href="/index.html" class="brand">Moonforge</a>
+      <nav class="nav">
+        <span class="nav-item has-mega">
+          <a href="/services.html">Servicios</a>
+          <div id="mega-services" class="mega"><div class="mega-grid"></div></div>
+        </span>
+        <a href="/portfolio.html">Portfolio</a>
+        <a href="/index.html#about">Sobre nosotros</a>
+        <a href="/contact.html">Contacto</a>
+      </nav>
+      <div class="lang">
+        <select id="lang-select" aria-label="Idioma">
+          <option value="es">ES</option><option value="en">EN</option><option value="ca">CA</option>
+        </select>
+      </div>
     </div>
-  </div>
-</header>
-<main>
+  </header>
 
-<section class="hero container">
-  <h1 data-i18n="home.hook">Forjamos experiencias digitales que hacen crecer tu marca.</h1>
-  <p class="lead" data-i18n="home.subhook">Productos a medida, videojuegos y 3D para empresas que quieren destacar.</p>
-  <a class="btn" href="contact.html?topic=presupuesto" data-i18n="home.cta">Pide presupuesto</a>
-</section>
-<section class="container brands">
-  <ul class="brand-list">
-    <li><img src="assets/brands/Loreal.svg" alt="L'Oréal" /></li>
-    <li><img src="assets/brands/NYX.svg" alt="NYX" /></li>
-    <li><img src="assets/brands/Louvre.svg" alt="Louvre" /></li>
-    <li><img src="assets/brands/Diesel.svg" alt="Diesel" /></li>
-    <li><img src="assets/brands/RoigArena.svg" alt="Roig Arena" /></li>
-  </ul>
-</section>
+  <main>
+    <section class="hero container">
+      <div class="hero-panels">
+        <span class="hero-pane p1"></span>
+        <span class="hero-pane p2"></span>
+      </div>
+      <div id="heroCarousel" class="hero-carousel">
+        <div class="hero-track">
+          <div class="hero-slide">
+            <div class="hero-stage">
+              <div class="hero-card">
+                <h1 class="hero-h1">Descubre nuestras <strong>soluciones</strong> para hacer que tu negocio despegue hacia las estrellas</h1>
+                <a class="hero-cta" href="/services.html">Digitalízame</a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-slide">
+            <div class="hero-stage">
+              <div class="hero-card">
+                <h1 class="hero-h1">Descubre nuestras <strong>soluciones</strong> para hacer que tu negocio despegue hacia las estrellas</h1>
+                <a class="hero-cta" href="/services.html">Digitalízame</a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-slide">
+            <div class="hero-stage">
+              <div class="hero-card">
+                <h1 class="hero-h1">Descubre nuestras <strong>soluciones</strong> para hacer que tu negocio despegue hacia las estrellas</h1>
+                <a class="hero-cta" href="/services.html">Digitalízame</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-dots"></div>
+      </div>
+    </section>
 
-</main>
-<footer class="footer">
-  <div class="container">© <span id="year"></span> Moonforge</div>
-</footer>
-<script src="main.js"></script>
+    <section class="brand-band">
+      <div class="container">
+        <div class="brands">
+          <img src="/assets/brands/roig.png" alt="Roig Arena">
+          <img src="/assets/brands/nyx.svg" alt="NYX">
+          <img src="/assets/brands/loreal.svg" alt="L'Oréal">
+          <img src="/assets/brands/hasbro.svg" alt="Hasbro">
+          <img src="/assets/brands/diesel.svg" alt="Diesel">
+          <img src="/assets/brands/louvre.svg" alt="Musée du Louvre">
+          <img src="/assets/brands/acciona.svg" alt="Acciona">
+          <img src="/assets/brands/gva.svg" alt="Generalitat Valenciana">
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="container section">
+      <h2>Sobre nosotros</h2>
+      <div class="card">
+        <p class="muted">
+          Impulsamos la transformación digital de marcas a través de experiencias, XR y productos interactivos.
+          Equipo multidisciplinar: estrategia, diseño, 3D, desarrollo e integración.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container">© <span id="year"></span> Moonforge</div></footer>
+  <script src="/main.js" defer></script>
 </body>
 </html>
->>>>>>> parent of 55e0740 (Reset)
