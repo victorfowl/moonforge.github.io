@@ -83,18 +83,15 @@ a {
     }
 
         .nav a:hover {
-            background-color: #dadada;
-            -webkit-background-clip: text;
-            background-clip: text;            
+            background-color: white !important;
             font-weight: 400; /* Montserrat Regular */
+            color: #626fb3;
             filter: drop-shadow(0 2px 0 rgba(0,0,0,.06));
         }
 
     .nav .active {
         background: #dadada;
         color: transparent;
-        -webkit-background-clip: text;
-        background-clip: text;
         background-image: linear-gradient(90deg,#626fb3,#6e55a0);
         font-weight: 400;
     }
