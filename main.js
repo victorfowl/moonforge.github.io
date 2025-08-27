@@ -149,8 +149,15 @@ function renderPortfolioList(items) {
             <source src="${assetUrl(p.video)}" type="video/mp4">
             Your browser does not support HTML5 video.
           </video>`;
+                const v = media.querySelector('video');
+                v?.addEventListener('loadeddata', () => v.classList.add('loaded'));
             } else {
-                media.innerHTML = `<img class="thumb" src="${assetUrl(p.thumb || '')}" alt="${p.title}">`;
+                const img = document.createElement('img');
+                img.className = 'thumb';
+                img.alt = p.title;
+                img.src = assetUrl(p.thumb || '');
+                img.addEventListener('load', () => img.classList.add('loaded'));
+                media.appendChild(img);
             }
 
             // Info
@@ -191,8 +198,15 @@ function renderCarousel(root, media = [], legacyThumb, legacyVideo, legacyPoster
         <video controls ${posterAttr} style="width:100%;height:auto;display:block;max-height:70vh;object-fit:contain">
           <source src="${assetUrl(m.src)}" type="video/mp4">
         </video>`;
+            const v = slide.querySelector('video');
+            v?.addEventListener('loadeddata', () => v.classList.add('loaded'));
         } else if (m.type === 'image' && m.src) {
-            slide.innerHTML = `<img src="${assetUrl(m.src)}" alt="${m.alt || ''}" style="width:100%;height:auto;display:block;max-height:70vh;object-fit:contain">`;
+            const img = document.createElement('img');
+            img.src = assetUrl(m.src);
+            img.alt = m.alt || '';
+            img.style = 'width:100%;height:auto;display:block;max-height:70vh;object-fit:contain';
+            img.addEventListener('load', () => img.classList.add('loaded'));
+            slide.appendChild(img);
         }
         track.appendChild(slide);
         slides.push(slide);
