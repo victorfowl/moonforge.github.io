@@ -1,57 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Inicio — Moonforge</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="assets/logo.png" />
+    <meta charset="utf-8">
+    <title>Moonforge — Producción Creativa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/styles.css" rel="stylesheet">
 </head>
 <body>
-<header class="topbar">
-  <div class="container nav-wrap">
-    <a class="brand" href="index.html">
-      <img src="assets/logo.png" alt="Moonforge" class="logo" />
-      <span class="brand-text">Moonforge</span>
-    </a>
-    <nav class="nav">
-      <a href="index.html" data-i18n="nav.home">Inicio</a>
-      <a href="services.html" data-i18n="nav.services">Servicios</a>
-      <a href="portfolio.html" data-i18n="nav.portfolio">Portafolio</a>
-      <a href="about.html" data-i18n="nav.about">Sobre nosotros</a>
-      <a href="contact.html" data-i18n="nav.contact">Contacto</a>
-    </nav>
-    <div class="lang">
-      <label for="lang-select" class="sr-only">Idioma</label>
-      <select id="lang-select" aria-label="Idioma">
-        <option value="es">ES</option>
-        <option value="ca">CAT</option>
-        <option value="en">EN</option>
-      </select>
-    </div>
-  </div>
-</header>
-<main>
+    <header class="topbar">
+        <div class="container nav-wrap">
+            <a href="/index.html" class="brand">Moonforge</a>
+            <nav class="nav">
+                <a href="/services.html" data-i18n="nav.services">Servicios</a>
+                <a href="/portfolio.html" data-i18n="nav.portfolio">Portfolio</a>
+                <a href="/contact.html" data-i18n="nav.contact">Contacto</a>
+            </nav>
+            <div class="lang">
+                <select id="lang-select" aria-label="Idioma">
+                    <option value="es">ES</option>
+                    <option value="en">EN</option>
+                    <option value="ca">CA</option>
+                </select>
+            </div>
+        </div>
+    </header>
 
-<section class="hero container">
-  <h1 data-i18n="home.hook">Forjamos experiencias digitales que hacen crecer tu marca.</h1>
-  <p class="lead" data-i18n="home.subhook">Productos a medida, videojuegos y 3D para empresas que quieren destacar.</p>
-  <a class="btn" href="contact.html?topic=presupuesto" data-i18n="home.cta">Pide presupuesto</a>
-</section>
-<section class="container brands">
-  <ul class="brand-list">
-    <li><img src="assets/brands/Loreal.svg" alt="L'Oréal" /></li>
-    <li><img src="assets/brands/NYX.svg" alt="NYX" /></li>
-    <li><img src="assets/brands/Louvre.svg" alt="Louvre" /></li>
-    <li><img src="assets/brands/Diesel.svg" alt="Diesel" /></li>
-    <li><img src="assets/brands/RoigArena.svg" alt="Roig Arena" /></li>
-  </ul>
-</section>
+    <main>
+        <section class="hero container">
+            <h1>Ideas que brillan, ejecuciones que impactan</h1>
+            <p class="lead">Estrategia, diseño y producción para marcas que quieren destacar.</p>
+            <p><a class="btn" href="/contact.html">Pedir presupuesto</a></p>
 
-</main>
-<footer class="footer">
-  <div class="container">© <span id="year"></span> Moonforge</div>
-</footer>
-<script src="main.js"></script>
+            <h2 style="margin-top:28px">Marcas que han confiado</h2>
+            <ul class="brand-list">
+                <li>L'Oréal</li>
+                <li>NYX</li>
+                <li>Musée du Louvre</li>
+                <li>Diesel</li>
+                <li>Roig Arena</li>
+            </ul>
+        </section>
+
+        <section class="container section">
+            <h2>Proyectos destacados</h2>
+            <div id="portfolioList" class="projects-list"></div>
+            <p style="text-align:center;margin-top:16px">
+                <a class="more" href="/portfolio.html">Ver todo el portfolio →</a>
+            </p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">© <span id="year"></span> Moonforge</div>
+    </footer>
+
+    <script src="/main.js" defer></script>
 </body>
 </html>
