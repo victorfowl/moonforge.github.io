@@ -257,21 +257,22 @@ h2 {
 
 .hero-pane {
     position: absolute;
-    top: 38px;
-    right: 0;
-    width: 420px;
-    height: 190px;
+    top: 60px;
+    right: 190px;
+    width: 400px;
+    height: 330px;
     border-radius: 22px;
-    transform: skewY(6deg) rotate(-2deg);
+    transform: skewY(0deg) rotate(2deg) skewX(354deg);
+    perspective-origin: left;
     background: #7c6bc4;
     opacity: .9;
 }
 
     .hero-pane.p2 {
-        top: 10px;
-        right: 170px;
-        height: 200px;
-        width: 360px;
+        top: 60px;
+        right: 270px;
+        height: 330px;
+        width: 300px;
         background: #6e55a0;
         opacity: .85;
     }
