@@ -1,1 +1,52 @@
+<<<<<<< HEAD
 <!doctype html><html><body><h1>Portfolio</h1></body></html>
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portafolio — Moonforge</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/logo.png" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.png" alt="Moonforge" class="logo" />
+      <span class="brand-text">Moonforge</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html" data-i18n="nav.home">Inicio</a>
+      <a href="services.html" data-i18n="nav.services">Servicios</a>
+      <a href="portfolio.html" data-i18n="nav.portfolio">Portafolio</a>
+      <a href="about.html" data-i18n="nav.about">Sobre nosotros</a>
+      <a href="contact.html" data-i18n="nav.contact">Contacto</a>
+    </nav>
+    <div class="lang">
+      <label for="lang-select" class="sr-only">Idioma</label>
+      <select id="lang-select" aria-label="Idioma">
+        <option value="es">ES</option>
+        <option value="ca">CAT</option>
+        <option value="en">EN</option>
+      </select>
+    </div>
+  </div>
+</header>
+<main>
+
+<section class="container section">
+  <h1 data-i18n="portfolio.title">Portafolio</h1>
+  <p class="muted" data-i18n="portfolio.lead">Selección de proyectos destacados.</p>
+  <div id="portfolioList" class="projects-list"></div>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="container">© <span id="year"></span> Moonforge</div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
+>>>>>>> parent of 55e0740 (Reset)
