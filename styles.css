@@ -606,9 +606,8 @@ h2 {
         width: min(70%, 760px);
         height: clamp(260px, 40vw, 460px);
         margin-left: 15%;
-        overflow: hidden;
-        --peek: clamp(4%, 6vw, 12%);
-        --gap: clamp(8px, 2vw, 24px);
+        --peek: clamp(2%, 4vw, 7%);
+        --gap: clamp(5%, 4vw, 50px);
     }
 
 .hero-carousel.is-cardstack .hero-slide{
@@ -636,12 +635,14 @@ h2 {
 }
 
 .hero-slide[data-pos="next"]{
-  transform: translate3d(var(--peek),0,0) scale(.965) rotate(.6deg);
+  transform: translate3d(var(--peek),0,0) scale(.965) rotate(.6deg) skewX(2deg);
   z-index: 3; opacity: .92; filter: saturate(.95);
 }
-.hero-slide[data-pos="tail"]{
-  transform: translate3d(calc(var(--peek) + var(--gap)),0,0) scale(.93) rotate(1.2deg);
-  z-index: 2; opacity: .7; filter: saturate(.9);
+.hero-slide[data-pos="tail"] {
+    transform: translate3d(calc(var(--peek) + var(--gap)),0,0) scale(.93) rotate(1.2deg) skewX(2deg);
+    z-index: 2;
+    opacity: .7;
+    filter: saturate(.9);
 }
 .hero-slide[data-pos="off"]{
   transform: translate3d(calc(var(--peek) * 2 + var(--gap)),0,0) scale(.88);
