@@ -364,12 +364,6 @@ h2 {
         opacity: .95
     }
 
-.hero-carousel.is-cardstack .hero-track {
-    width: min(100%, 960px);
-    height: clamp(260px, 40vw, 460px);
-    margin-left: auto; /* a la derecha */
-}
-
 /* Cards */
 .card {
     background: var(--panel);
@@ -597,4 +591,78 @@ h2 {
         transform: translate(-50%,8px);
         width: 92vw
     }
+}
+
+/* === Hero Cardstack centrado con sombras responsivas === */
+.hero-carousel.is-cardstack {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  overflow: visible;
+}
+
+    .hero-carousel.is-cardstack .hero-track {
+        position: relative;
+        width: min(70%, 760px);
+        /* height: clamp(260px, 40vw, 460px); */
+        margin-left: 15%;
+        overflow: hidden;
+        --peek: clamp(4%, 6vw, 12%);
+        --gap: clamp(8px, 2vw, 24px);
+    }
+
+.hero-carousel.is-cardstack .hero-slide{
+  position: absolute;
+  inset: 0;
+  transition: transform .6s ease, opacity .6s ease, filter .6s ease;
+  will-change: transform, filter;
+  pointer-events: none;
+}
+
+.hero-carousel.is-cardstack .hero-stage,
+.hero-carousel.is-cardstack .hero-card{
+  height: 100%;
+}
+
+.hero-carousel.is-cardstack .hero-card{
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.hero-slide[data-pos="current"]{
+  transform: translate3d(0,0,0) scale(1);
+  z-index: 4; opacity: 1; filter: none; pointer-events: auto;
+}
+
+.hero-slide[data-pos="next"]{
+  transform: translate3d(var(--peek),0,0) scale(.965) rotate(.6deg);
+  z-index: 3; opacity: .92; filter: saturate(.95);
+}
+.hero-slide[data-pos="tail"]{
+  transform: translate3d(calc(var(--peek) + var(--gap)),0,0) scale(.93) rotate(1.2deg);
+  z-index: 2; opacity: .7; filter: saturate(.9);
+}
+.hero-slide[data-pos="off"]{
+  transform: translate3d(calc(var(--peek) * 2 + var(--gap)),0,0) scale(.88);
+  z-index: 1; opacity: 0; pointer-events: none;
+}
+
+.hero-slide[data-pos="next"] .hero-card::after,
+.hero-slide[data-pos="tail"] .hero-card::after{
+  content: "";
+  position: absolute; inset: 0;
+  box-shadow: inset 0 0 0 9999px rgba(0,0,0,.18);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+@media (max-width: 980px){
+  .hero-carousel.is-cardstack .hero-track{ --peek: clamp(3%, 5vw, 9%); --gap: clamp(6px, 1.5vw, 16px); }
+  .hero-slide[data-pos="next"]{ transform: translate3d(var(--peek),0,0) scale(.975) rotate(.4deg); }
+  .hero-slide[data-pos="tail"]{ transform: translate3d(calc(var(--peek) + var(--gap)),0,0) scale(.95) rotate(.8deg); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero-carousel.is-cardstack .hero-slide{ transition: none; }
 }
