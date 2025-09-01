@@ -175,20 +175,69 @@ function renderCarousel(root, media=[], legacyThumb, legacyVideo, legacyPoster){
 }
 
 // ---------- Carrusel Home ----------
-function initHeroCarousel(){
-  const root=$('#heroCarousel'); if(!root) return;
-  const track=$('.hero-track', root); const dotsWrap=$('.hero-dots', root);
-  const slides=$$('.hero-slide', track);
-  let idx=0, timer=null;
-  function go(i){
-    idx=(i+slides.length)%slides.length;
-    track.style.transform=`translateX(-${idx*100}%)`;
-    $$('.hero-dot', dotsWrap).forEach((d,k)=>d.classList.toggle('active',k===idx));
-  }
-  function start(){ stop(); timer=setInterval(()=>go(idx+1), 5000); }
-  function stop(){ if(timer){clearInterval(timer); timer=null;} }
-  dotsWrap.innerHTML=''; slides.forEach((_,i)=>{ const b=document.createElement('button'); b.className='hero-dot'; if(i===0) b.classList.add('active'); b.onclick=()=>{ go(i); start(); }; dotsWrap.appendChild(b); });
-  start(); root.addEventListener('mouseenter', stop); root.addEventListener('mouseleave', start);
+function initHeroCarousel() {
+    const root = $('#heroCarousel'); if (!root) return;
+    const track = $('.hero-track', root);
+    const dotsWrap = $('.hero-dots', root) || document.createElement('div');
+    if (!dotsWrap.classList.contains('hero-dots')) { dotsWrap.className = 'hero-dots'; root.appendChild(dotsWrap); }
+    const slides = $$('.hero-slide', track);
+    let idx = 0, timer = null;
+
+    const isCard = root.classList.contains('is-cardstack');
+
+    function paintCardStack() {
+        const n = slides.length;
+        slides.forEach((sl, i) => {
+            let pos = 'off';
+            if (i === idx) pos = 'current';
+            else if (i === (idx - 1 + n) % n) pos = 'prev';
+            else if (i === (idx + 1) % n) pos = 'next';
+            sl.setAttribute('data-pos', pos);
+        });
+    }
+
+    function go(i) {
+        idx = (i + slides.length) % slides.length;
+        if (isCard) {
+            paintCardStack();
+        } else {
+            // comportamiento antiguo
+            track.style.transform = `translateX(-${idx * 100}%)`;
+        }
+        $$('.hero-dot', dotsWrap).forEach((d, k) => d.classList.toggle('active', k === idx));
+    }
+
+    function start() { stop(); timer = setInterval(() => go(idx + 1), 5000); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+    // Dots
+    dotsWrap.innerHTML = '';
+    slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'hero-dot';
+        b.type = 'button';
+        b.onclick = () => { go(i); start(); };
+        dotsWrap.appendChild(b);
+    });
+
+    // Gestos drag para card stack
+    if (isCard) {
+        let down = false, sx = 0, dx = 0;
+        const onDown = e => { down = true; sx = (e.touches ? e.touches[0].clientX : e.clientX); dx = 0; stop(); };
+        const onMove = e => { if (!down) return; const x = (e.touches ? e.touches[0].clientX : e.clientX); dx = x - sx; };
+        const onUp = () => { if (!down) return; down = false; if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1)); start(); };
+        track.addEventListener('mousedown', onDown);
+        window.addEventListener('mouseup', onUp);
+        window.addEventListener('mousemove', onMove);
+        track.addEventListener('touchstart', onDown, { passive: true });
+        track.addEventListener('touchmove', onMove, { passive: true });
+        track.addEventListener('touchend', onUp);
+    }
+
+    if (isCard) paintCardStack();
+    start();
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
 }
 
 // ---------- Hydrate ----------

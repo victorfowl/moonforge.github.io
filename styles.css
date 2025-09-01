@@ -592,3 +592,72 @@ h2 {
         width: 92vw
     }
 }
+
+.hero-carousel.is-cardstack {
+    position: relative;
+    display: grid;
+    justify-items: end;
+}
+
+    .hero-carousel.is-cardstack .hero-track {
+        position: relative;
+        width: min(100%, 960px);
+        height: clamp(260px, 40vw, 460px);
+        margin-left: auto; /* desplaza a la derecha */
+    }
+
+    .hero-carousel.is-cardstack .hero-slide {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 100%;
+        transition: transform .6s ease, opacity .6s ease, filter .6s ease;
+        will-change: transform;
+    }
+
+    .hero-carousel.is-cardstack .hero-stage,
+    .hero-carousel.is-cardstack .hero-card {
+        height: 100%;
+    }
+
+/* Estados de carta */
+.hero-slide[data-pos="prev"] {
+    transform: translateX(-6%) rotate(-2deg) scale(.94);
+    z-index: 1;
+    opacity: .85;
+    filter: saturate(.95);
+}
+
+.hero-slide[data-pos="current"] {
+    transform: translateX(0) rotate(0) scale(1);
+    z-index: 3;
+    opacity: 1;
+    filter: none;
+}
+
+.hero-slide[data-pos="next"] {
+    transform: translateX(6%) rotate(2deg) scale(.97);
+    z-index: 2;
+    opacity: .92;
+    filter: saturate(.98);
+}
+/* Resto de cartas (cuando hay >3) */
+.hero-slide[data-pos="off"] {
+    transform: translateX(12%) scale(.9);
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (max-width: 980px) {
+    .hero-carousel.is-cardstack .hero-track {
+        width: 100%;
+    }
+
+    .hero-slide[data-pos="prev"] {
+        transform: translateX(-3%) rotate(-1.2deg) scale(.95);
+    }
+
+    .hero-slide[data-pos="next"] {
+        transform: translateX(3%) rotate(1.2deg) scale(.98);
+    }
+}
