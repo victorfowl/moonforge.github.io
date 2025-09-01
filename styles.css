@@ -604,7 +604,7 @@ h2 {
     .hero-carousel.is-cardstack .hero-track {
         position: relative;
         width: min(70%, 760px);
-        /* height: clamp(260px, 40vw, 460px); */
+        height: clamp(260px, 40vw, 460px);
         margin-left: 15%;
         overflow: hidden;
         --peek: clamp(4%, 6vw, 12%);
