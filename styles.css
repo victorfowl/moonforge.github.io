@@ -642,7 +642,6 @@ h2 {
     opacity: 1;
     filter: none;
     pointer-events: auto;
-    background-image: url("/assets/Banner_Galaxia.png");
 }
 
 .hero-slide[data-pos="next"]{
@@ -679,4 +678,34 @@ h2 {
 
 @media (prefers-reduced-motion: reduce){
   .hero-carousel.is-cardstack .hero-slide{ transition: none; }
+}
+.hero-carousel.is-cardstack .hero-slide[data-pos="current"] {
+    pointer-events: auto;
+    z-index: 5;
+}
+.hero-carousel.is-cardstack .hero-card,
+.hero-carousel.is-cardstack .hero-cta {
+    position: relative;
+    z-index: 6;
+}
+.hero-carousel.is-cardstack .hero-slide[data-pos="next"] {
+    z-index: 3;
+}
+
+.hero-carousel.is-cardstack .hero-slide[data-pos="tail"] {
+    z-index: 2;
+}
+
+.hero-carousel.is-cardstack .hero-slide[data-pos="off"] {
+    z-index: 1;
+}
+.hero-carousel.is-cardstack .hero-slide[data-pos="current"] .hero-card {
+    background: url("/assets/Banner_Galaxia.png") center no-repeat;
+}
+.hero-carousel.is-cardstack .hero-slide[data-pos="next"] .hero-card::after,
+.hero-carousel.is-cardstack .hero-slide[data-pos="tail"] .hero-card::after {
+    pointer-events: none;
+}
+.hero-carousel.is-cardstack .hero-slide[data-pos="current"] .hero-card::after {
+    content: none;
 }
