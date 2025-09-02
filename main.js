@@ -178,7 +178,9 @@ function renderCarousel(root, media=[], legacyThumb, legacyVideo, legacyPoster){
 function initHeroCarousel() {
     const root = $('#heroCarousel'); if (!root) return;
     const track = $('.hero-track', root);
-    const dotsWrap = $('.hero-dots', root) || (() => { const d = document.createElement('div'); d.className = 'hero-dots'; root.appendChild(d); return d; })();
+    const dotsWrap = $('.hero-dots', root) || (() => {
+        const d = document.createElement('div'); d.className = 'hero-dots'; root.appendChild(d); return d;
+    })();
     const slides = $$('.hero-slide', track);
     let idx = 0, timer = null;
     const isCard = root.classList.contains('is-cardstack');
@@ -187,46 +189,69 @@ function initHeroCarousel() {
         const n = slides.length;
         slides.forEach((sl, i) => {
             let pos = 'off';
-            if (i === idx) pos = 'current';                  // 1ª
-            else if (i === (idx + 1) % n) pos = 'next';          // 2ª visible derecha
-            else if (i === (idx + 2) % n) pos = 'tail';          // 3ª sombra derecha
+            if (i === idx) pos = 'current';
+            else if (i === (idx + 1) % n) pos = 'next';
+            else if (i === (idx + 2) % n) pos = 'tail';
             sl.setAttribute('data-pos', pos);
         });
+        $$('.hero-dot', dotsWrap).forEach((d, k) => d.classList.toggle('active', k === idx));
     }
 
     function go(i) {
         const n = slides.length;
-        // rotación solicitada: 2→1, 1→última, 3→medio
-        idx = (i + n) % n; // avanzar uno produce justo ese efecto
-        if (isCard) paint(); else track.style.transform = `translateX(-${idx * 100}%)`;
-        $$('.hero-dot', dotsWrap).forEach((d, k) => d.classList.toggle('active', k === idx));
+        idx = (i + n) % n;                 // 2→1, 1→última, 3→medio
+        if (isCard) paint();
+        else track.style.transform = `translateX(-${idx * 100}%)`;
     }
 
     function start() { stop(); timer = setInterval(() => go(idx + 1), 5000); }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    const isInteractive = el => !!el.closest && el.closest('a,button,[role="button"],input,textarea,select,label');
 
+    // Dots
     dotsWrap.innerHTML = '';
-    slides.forEach((_, i) => { const b = document.createElement('button'); b.className = 'hero-dot'; b.type = 'button'; b.onclick = () => { go(i); start(); }; dotsWrap.appendChild(b); });
+    slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'hero-dot'; b.type = 'button';
+        b.onclick = () => { go(i); start(); };
+        dotsWrap.appendChild(b);
+    });
 
-    // Gestos drag / swipe
+    // Gestos drag/swipe (una sola vez)
     if (isCard) {
-        let down = false, sx = 0, dx = 0;
-        const onDown = e => { down = true; sx = (e.touches ? e.touches[0].clientX : e.clientX); dx = 0; stop(); };
-        const onMove = e => { if (!down) return; const x = (e.touches ? e.touches[0].clientX : e.clientX); dx = x - sx; };
-        const onUp = () => { if (!down) return; down = false; if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1)); start(); };
+        let down = false, sx = 0, dx = 0, drag = false;
+
+        const onDown = e => {
+            if (isInteractive(e.target)) return; // no interceptar clics en CTA
+            down = true; drag = false; stop();
+            sx = (e.touches ? e.touches[0].clientX : e.clientX); dx = 0;
+        };
+        const onMove = e => {
+            if (!down) return;
+            const x = (e.touches ? e.touches[0].clientX : e.clientX);
+            dx = x - sx;
+            if (Math.abs(dx) > 8) drag = true;
+        };
+        const onUp = () => {
+            if (!down) return; down = false;
+            if (drag && Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+            start();
+        };
+
         track.addEventListener('mousedown', onDown);
-        window.addEventListener('mouseup', onUp);
         window.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseup', onUp);
         track.addEventListener('touchstart', onDown, { passive: true });
         track.addEventListener('touchmove', onMove, { passive: true });
         track.addEventListener('touchend', onUp);
     }
 
-    if (isCard) paint();
+    if (isCard) paint(); else go(0);
     start();
     root.addEventListener('mouseenter', stop);
     root.addEventListener('mouseleave', start);
 }
+
 
 // ---------- Hydrate ----------
 async function hydrate(){
