@@ -350,6 +350,12 @@ h2 {
     padding: 70px 0
 }
 
+.brand-logo {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
 .brands {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
