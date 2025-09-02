@@ -235,16 +235,12 @@ h2 {
     position: relative;
     width: min(920px,100%);
     margin: 0 auto;
-    padding: 22px;
     border-radius: 28px;
-    background: linear-gradient(#e7e7e7,#cfcfcf);
-    box-shadow: 0 18px 28px rgba(0,0,0,.45);
 }
 
 .hero-card {
     border-radius: 22px;
     overflow: hidden;
-    background: #0b0b14 url('/assets/hero-space.jpg') center/cover no-repeat;
     padding: 32px 26px 38px;
     min-height: 240px;
 }
