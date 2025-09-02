@@ -642,12 +642,12 @@ h2 {
 
 .hero-slide[data-pos="next"]{
   transform: translate3d(var(--peek),0,0) scale(.965) rotate(2deg);
-  z-index: 3; opacity: .92; filter: saturate(.95);
+  z-index: 3; opacity: 1; filter: saturate(.95);
 }
 .hero-slide[data-pos="tail"] {
     transform: translate3d(calc(var(--peek) + var(--gap)),0,0) scale(.93) rotate(4deg);
     z-index: 2;
-    opacity: .7;
+    opacity: 1;
     filter: saturate(.9);
 }
 .hero-slide[data-pos="off"]{
