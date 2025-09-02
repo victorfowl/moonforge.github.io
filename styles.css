@@ -655,15 +655,25 @@ h2 {
   z-index: 1; opacity: 0; pointer-events: none;
 }
 
-.hero-slide[data-pos="next"] .hero-card::after,
-.hero-slide[data-pos="tail"] .hero-card::after {
+.hero-carousel.is-cardstack .hero-slide[data-pos="next"] .hero-card::after {
     content: "";
     position: absolute;
     inset: 0;
-    box-shadow: inset 0 0 0 9999px rgba(0,0,0,.18);
-    pointer-events: none;
     border-radius: inherit;
-    background: linear-gradient(180deg, rgba(98,111,179,.4), rgba(0,0,0,.3));
+    background: rgb(123, 108, 174);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.hero-carousel.is-cardstack .hero-slide[data-pos="tail"] .hero-card::after,
+.hero-carousel.is-cardstack .hero-slide[data-pos="off"] .hero-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgb(148, 156, 203);
+    pointer-events: none;
+    z-index: 5;
 }
 
 @media (max-width: 980px){
