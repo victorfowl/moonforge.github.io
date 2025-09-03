@@ -197,7 +197,8 @@ h1 {
 }
 
 .hero-card-cover {
-    background: url('assets/Banner_Galaxia.svg') center/cover no-repeat;
+    background: url('assets/Banner_Galaxia.png') center no-repeat;
+    background-size: cover;
 }
 
 .hero-slide[data-pos="next"] .hero-card {
