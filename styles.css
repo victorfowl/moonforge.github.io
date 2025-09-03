@@ -319,7 +319,7 @@ h2 {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 10px;
+    bottom: 0px;
     display: flex;
     gap: 8px;
     justify-content: center
