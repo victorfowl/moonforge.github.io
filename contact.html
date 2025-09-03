@@ -17,17 +17,46 @@
 </header>
 
 <main class="section container">
-  <h1>Contacto</h1>
-  <form id="contactForm" class="form">
-    <div class="form-row">
-      <input class="input" name="nombre" placeholder="Nombre" required>
-      <input class="input" type="email" name="email" placeholder="Email" required>
-      <input class="input full" name="asunto" placeholder="Asunto">
-      <textarea class="full" name="mensaje" rows="6" placeholder="Mensaje" required></textarea>
-    </div>
-    <button class="btn-submit" type="submit">Enviar</button>
-    <p id="contactStatus" class="muted"></p>
-  </form>
+    <h1>Contacto</h1>
+    <form action="https://formspree.io/f/xnnbojnb" method="POST">
+        <label>Nombre <input type="text" name="nombre" required></label>
+        <label>Email <input type="email" name="email" required></label>
+        <label>Asunto <input type="text" name="asunto"></label>
+        <label>Mensaje <textarea name="mensaje" required></textarea></label>
+
+        <input type="hidden" name="_subject" value="[Contacto] Moonforge">
+        <input type="hidden" name="_language" value="es">
+        <input type="text" name="_honey" style="display:none">
+        <input type="hidden" name="_gotcha" style="display:none">
+        <input type="hidden" name="_redirect" value="https://moonforge.es/index.html">
+
+        <button type="submit">Enviar</button>
+    </form>
+    <script>
+        const FORM_URL = "https://formspree.io/f/xnnbojnb";
+        const form = document.querySelector("form");
+        const estado = document.getElementById("estado");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            estado.textContent = "Enviando…";
+            try {
+                const data = Object.fromEntries(new FormData(form).entries());
+                const r = await fetch(FORM_URL, {
+                    method: "POST",
+                    headers: { "Accept": "application/json" },
+                    body: new FormData(form)
+                });
+                if (r.ok) { estado.textContent = "Enviado. Gracias."; form.reset(); }
+                else {
+                    const err = await r.json().catch(() => ({}));
+                    estado.textContent = "Error: " + (err.errors?.[0]?.message || r.statusText);
+                }
+            } catch {
+                estado.textContent = "Error de red";
+            }
+        });
+    </script>
 </main>
 
 <footer class="footer">
