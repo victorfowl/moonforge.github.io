@@ -707,6 +707,7 @@ h2 {
 }
 .hero-carousel.is-cardstack .hero-slide[data-pos="current"] .hero-card {
     background: url("/assets/Banner_Galaxia.png") center no-repeat;
+    background-size: cover;
 }
 .hero-carousel.is-cardstack .hero-slide[data-pos="next"] .hero-card::after,
 .hero-carousel.is-cardstack .hero-slide[data-pos="tail"] .hero-card::after {
