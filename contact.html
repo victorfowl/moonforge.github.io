@@ -2,43 +2,46 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Contacto — Moonforge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="/styles.css" rel="stylesheet">
+  <title>Contacto — Moonforge</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="topbar">
-      <div class="container nav-wrap">
-          <a href="/index.html" class="brand">
-              <img src="/assets/Logo_Moonforge_White.png" alt="Moonforge logo" class="brand-logo">
-          </a>
-          <nav class="nav">
-              <span class="nav-item has-mega">
-                  <a href="/services.html">Servicios</a>
-                  <div id="mega-services" class="mega"><div class="mega-grid"></div></div>
-              </span>
-              <a href="/portfolio.html">Portfolio</a>
-              <a href="/about.html">Sobre nosotros</a>
-              <a href="/contact.html" class="active">Contacto</a>
-          </nav>
-          <div class="lang"><select id="lang-select"><option value="es">ES</option><option value="en">EN</option><option value="ca">CA</option></select></div>
-      </div>
-  </header>
+<header class="topbar">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand"><img src="assets/logo.svg" alt="Moonforge" class="brand-logo"></a>
+    <nav class="nav">
+      <a href="contact.html" class="active">Contáctanos</a>
+    </nav>
+  </div>
+</header>
 
-  <main class="container section">
-    <h1>Contacto</h1>
-    <form class="form" action="https://formspree.io/f/yourid" method="POST">
-      <div class="form-row">
-        <div><input class="input" type="text" name="name" placeholder="Nombre" required></div>
-        <div><input class="input" type="email" name="email" placeholder="Email" required></div>
-        <div class="full"><input class="input" type="text" name="subject" placeholder="Asunto"></div>
-        <div class="full"><textarea class="input" name="message" placeholder="Cuéntanos tu proyecto…" rows="6" required></textarea></div>
-      </div>
-      <button class="btn-submit" type="submit">Enviar</button>
-    </form>
-  </main>
+<main class="section container">
+  <h1>Contacto</h1>
+  <form id="contactForm" class="form">
+    <div class="form-row">
+      <input class="input" name="nombre" placeholder="Nombre" required>
+      <input class="input" type="email" name="email" placeholder="Email" required>
+      <input class="input full" name="asunto" placeholder="Asunto">
+      <textarea class="full" name="mensaje" rows="6" placeholder="Mensaje" required></textarea>
+    </div>
+    <button class="btn-submit" type="submit">Enviar</button>
+    <p id="contactStatus" class="muted"></p>
+  </form>
+</main>
 
-  <footer class="footer"><div class="container">© <span id="year"></span> Moonforge</div></footer>
-  <script src="/main.js" defer></script>
+<footer class="footer">
+  <div class="container">© <span id="year"></span> Moonforge</div>
+</footer>
+
+<script>
+const API = "#";
+document.getElementById('contactForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const s = document.getElementById('contactStatus');
+  s.textContent = 'Enviando…';
+  setTimeout(()=>{ s.textContent='Demo. Conecta backend o servicio externo.'; }, 400);
+});
+</script>
 </body>
 </html>
