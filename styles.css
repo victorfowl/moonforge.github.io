@@ -71,8 +71,7 @@ a {
     .nav a {
         padding: 10px 16px;
         border-radius: 999px;
-        background: rgba(255,255,255,.08);
-        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,0);
         color: #cfd3e3;
         font-weight: 300;
         transition: transform .15s, background .2s, color .2s, box-shadow .2s
