@@ -175,8 +175,6 @@ h1 {
     }
 
 .hero-slide[data-pos="current"] {
-    /*background: url('assets/Banner_Galaxia.png') center no-repeat;
-    background-size: cover;*/
     transform: translateX(0) rotate(0);
     z-index: 4;
     pointer-events: auto
@@ -198,14 +196,9 @@ h1 {
     opacity: 0
 }
 
-/*.hero-card-cover {
-    background: url('assets/Banner_Galaxia.png') center no-repeat;
-    background-size: cover;
-}*/
-
 .hero-slide[data-pos="current"] .hero-card {
     background: url('assets/Banner_Galaxia.png') center no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 .hero-slide[data-pos="next"] .hero-card {
     background: #7c6bc4
