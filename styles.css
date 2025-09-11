@@ -78,7 +78,7 @@ a {
         transition: transform .15s, background .2s, color .2s, box-shadow .2s
     }
 
-        .nav a:hover, .nav a.active {
+        .nav a:hover, .nav a:active {
             background: #fff;
             border-color: #fff;
             color: var(--brand1);
