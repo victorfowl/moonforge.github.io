@@ -55,12 +55,13 @@ a {
 }
 
 .brand-logo {
-    height: 56px;
-    width: auto;
-    background: #fff;
-    border-radius: 12px;
+    height: 370px;
+    position: absolute;
+    width: 150px;
+    border-radius: 5px;
     padding: 8px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.25)
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+    inset: -230px 20px 20px 90px;
 }
 
 .nav {
