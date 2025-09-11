@@ -43,7 +43,6 @@ a {
     z-index: 20;
     background: rgba(15,18,32,.85);
     backdrop-filter: saturate(1.2) blur(8px);
-    border-bottom: 1px solid rgba(255,255,255,.08)
 }
 
 .nav-wrap {
