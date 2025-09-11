@@ -208,6 +208,16 @@ h1 {
 .hero-slide[data-pos="tail"] .hero-card {
     background: #949ccb
 }
+.hero-slide[data-pos="current"] .hero-card .hero-h1 {
+    visibility: visible;
+}
+.hero-slide[data-pos="next"] .hero-card .hero-h1 {
+    visibility: hidden;
+}
+
+.hero-slide[data-pos="tail"] .hero-card .hero-h1 {
+    visibility: hidden;
+}
 
     .hero-slide[data-pos="next"] .hero-card::after, .hero-slide[data-pos="tail"] .hero-card::after {
         content: "";
