@@ -170,17 +170,15 @@ h1 {
 }
 
 .hero-slide[data-pos="next"] {
-    transform: translateX(var(--peek)) skewX(-4deg) skewY(1.5deg);
+    transform: translateX(var(--peek)) rotate(1.5deg) perspective(600px) rotateY(-5deg);
     z-index: 3;
     height: 95%;
-    top: 2%;
 }
 
 .hero-slide[data-pos="tail"] {
-    transform: translateX(calc(var(--peek) + var(--gap))) rotate(6deg) skewX(-4deg) skewY(1.5deg);
+    transform: translateX(calc(var(--peek) + var(--gap))) rotate(1.5deg) perspective(600px) rotateY(-5deg);
     z-index: 2;
     height: 95%;
-    top: 2%;
 }
 
 .hero-slide[data-pos="off"] {
