@@ -55,7 +55,7 @@ a {
 
 .brand-logo {
     position: absolute;
-    inset: -360px 0px 0px 0px;
+    inset: -360px 0px 0px -60px;
 }
 
 .nav {
@@ -92,8 +92,10 @@ h1 {
 }
 
 .hero {
-    padding: 60px 0px 100px 0px;
-    position: relative
+    position: relative;
+    height: 500px;
+    max-width: 860px;
+    margin: 24px auto;
 }
 
 .hero-carousel {
@@ -137,8 +139,8 @@ h1 {
 .hero-h1 {
     font-size: 40px;
     line-height: 1.13;
-    margin: 50px 50px 50px 50px;
-    text-shadow: 0 2px 2px rgba(0, 0, 0, .3);
+    margin: 20px 20px 20px 20px;
+    height: 60%;
 }
 
 .hero-cta {
@@ -240,14 +242,14 @@ h1 {
 
 .hero-bg {
     position: absolute;
-    top: -100px;
-    left: 30%;
-    width: 110%;
-    height: 700px;
+    left: 0px;
+    width: 172%;
+    height: 110%;
     background: url(/assets/FondoTarjetas.png) center no-repeat;
     background-size: contain;
     z-index: 0;
     pointer-events: none;
+    margin: 0px auto !important;
 }
 
 .brand-band {
@@ -310,7 +312,7 @@ h1 {
 }
 
 /* Card del formulario */
-.contact-card {
+    .contact-card {
     max-width: 860px;
     margin: 24px auto;
     padding: 28px 24px;
