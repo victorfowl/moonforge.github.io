@@ -69,7 +69,8 @@ a {
         background: rgba(255,255,255,0);
         color: #cfd3e3;
         font-weight: 500;
-        transition: transform .15s, background .2s, color .2s, box-shadow .2s
+        transition: transform .15s, background .2s, color .2s, box-shadow .2s;
+        font-size: larger;
     }
 
         .nav a:hover, .nav a:active {
@@ -78,7 +79,8 @@ a {
             color: var(--brand1);
             font-weight: 600;
             transform: translateY(-1px);
-            box-shadow: 0 10px 22px rgba(0,0,0,.25)
+            box-shadow: 0 10px 22px rgba(0,0,0,.25);
+            font-size: larger;
         }
 
 .section {
@@ -94,7 +96,7 @@ h1 {
     position: relative;
     height: 500px;
     max-width: 860px;
-    margin: 24px auto;
+    margin: 0px auto;
 }
 
 .hero-carousel {
