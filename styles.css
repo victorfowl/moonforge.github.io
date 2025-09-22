@@ -125,8 +125,7 @@ h1 {
             position: absolute;
             width: 1600px;
             height: 700px;
-            inset: -100px 0px 0px 0px;
-            border-radius: 28px;
+            inset: -125px 0px 0px 0px;
             background: url(assets/FondoTarjetas.png) center no-repeat;
             background-size: contain;
             z-index: 0;
