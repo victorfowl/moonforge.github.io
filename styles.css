@@ -102,10 +102,10 @@ h1 {
     position: relative;
     overflow: visible;
     z-index: 1;
-    width: 45%;
-    left: 31%;
-    top: -20px;
-    height: 315px;
+    width: 75%;
+    left: 20px;
+    top: 20px;
+    height: 75%;
 }
 
     .hero-carousel .hero-track {
