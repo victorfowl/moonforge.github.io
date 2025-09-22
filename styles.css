@@ -22,7 +22,6 @@ html, body {
 }
 
 body {
-    max-width: 1200px; 
     margin: 0 auto;
     overflow-x: hidden;
 }
@@ -55,7 +54,7 @@ a {
 
 .brand-logo {
     position: absolute;
-    inset: -360px 0px 0px -60px;
+    top: -355px;
 }
 
 .nav {
