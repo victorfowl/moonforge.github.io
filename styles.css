@@ -46,11 +46,8 @@ a {
 }
 
 .nav-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 12px 0
+    position: absolute;
+    inset: -360px 0px 0px 0px;
 }
 
 .brand-logo {

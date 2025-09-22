@@ -21,49 +21,97 @@
 <main>
     <section class="hero container">
         <div class="hero-bg" aria-hidden="true"></div>
-            <div id="heroCarousel" class="hero-carousel is-cardstack">
-                <div class="hero-track">
-                    <div class="hero-slide">
-                        <div class="hero-stage">
-                            <div class="hero-card hero-card-cover">
-                                <h1 class="hero-h1">Descubre nuestras <strong>soluciones</strong> para hacer que tu negocio despegue</h1>
-                                <a class="hero-cta" href="contact.html">Digitalízame</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hero-slide">
-                        <div class="hero-stage">
-                            <div class="hero-card">
-                                <h1 class="hero-h1">Experiencias XR<br>para formación y marketing</h1>
-                                <a class="hero-cta" href="contact.html">Digitalízame</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hero-slide">
-                        <div class="hero-stage">
-                            <div class="hero-card">
-                                <h1 class="hero-h1">Gemelos digitales y showrooms 3D</h1>
-                                <a class="hero-cta" href="contact.html">Digitalízame</a>
-                            </div>
+        <div id="heroCarousel" class="hero-carousel is-cardstack">
+            <div class="hero-track">
+                <div class="hero-slide">
+                    <div class="hero-stage">
+                        <div class="hero-card hero-card-cover">
+                            <h1 class="hero-h1">Descubre nuestras <strong>soluciones</strong> para hacer que tu negocio despegue</h1>
+                            <a class="hero-cta" href="contact.html">Digitalízame</a>
                         </div>
                     </div>
                 </div>
-                <div class="hero-dots"></div>
+                <div class="hero-slide">
+                    <div class="hero-stage">
+                        <div class="hero-card">
+                            <h1 class="hero-h1">Experiencias XR<br>para formación y marketing</h1>
+                            <a class="hero-cta" href="contact.html">Digitalízame</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide">
+                    <div class="hero-stage">
+                        <div class="hero-card">
+                            <h1 class="hero-h1">Gemelos digitales y showrooms 3D</h1>
+                            <a class="hero-cta" href="contact.html">Digitalízame</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="hero-dots"></div>
+        </div>
     </section>
+    <section class="section container">
+        <div class="contact-card">
+            <h1>Contacto</h1>
 
-  <section class="brand-band">
-      <div class="container brands">
-          <img src="/assets/brands/roig.png" alt="Roig Arena">
-          <img src="/assets/brands/nyx.png" alt="NYX">
-          <img src="/assets/brands/loreal.png" alt="L'Oréal">
-          <img src="/assets/brands/hasbro.png" alt="Hasbro">
-          <img src="/assets/brands/diesel.png" alt="Diesel">
-          <img src="/assets/brands/louvre.png" alt="Musée du Louvre">
-          <img src="/assets/brands/acciona.png" alt="Acciona">
-          <img src="/assets/brands/gva.png" alt="Generalitat Valenciana">
-      </div>
-  </section>
+            <form action="https://formspree.io/f/xnnbojnb" method="POST" id="contactForm">
+                <div class="form-grid">
+                    <label>
+                        <span>Nombre</span>
+                        <input class="input" type="text" name="nombre" required>
+                    </label>
+
+                    <label>
+                        <span>Email</span>
+                        <input class="input" type="email" name="email" required>
+                    </label>
+
+                    <label class="full">
+                        <span>Asunto</span>
+                        <input class="input" type="text" name="asunto">
+                    </label>
+
+                    <label class="full">
+                        <span>Mensaje</span>
+                        <textarea class="input" name="mensaje" rows="6" required></textarea>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn-submit" type="submit">Enviar</button>
+                    <p id="estado" class="muted"></p>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script>
+        const FORM_URL = "https://formspree.io/f/xnnbojnb";
+        const form = document.getElementById("contactForm");
+        const estado = document.getElementById("estado");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            estado.textContent = "Enviando…";
+            try {
+                const r = await fetch(FORM_URL, { method: "POST", headers: { "Accept": "application/json" }, body: new FormData(form) });
+                if (r.ok) { estado.textContent = "Enviado. Gracias."; form.reset(); }
+                else { const err = await r.json().catch(() => ({})); estado.textContent = "Error: " + (err.errors?.[0]?.message || r.statusText); }
+            } catch { estado.textContent = "Error de red"; }
+        });
+    </script>
+    <section class="brand-band">
+        <div class="container brands">
+            <img src="/assets/brands/roig.png" alt="Roig Arena">
+            <img src="/assets/brands/nyx.png" alt="NYX">
+            <img src="/assets/brands/loreal.png" alt="L'Oréal">
+            <img src="/assets/brands/hasbro.png" alt="Hasbro">
+            <img src="/assets/brands/diesel.png" alt="Diesel">
+            <img src="/assets/brands/louvre.png" alt="Musée du Louvre">
+            <img src="/assets/brands/acciona.png" alt="Acciona">
+            <img src="/assets/brands/gva.png" alt="Generalitat Valenciana">
+        </div>
+    </section>
 </main>
 
 <footer class="footer">
